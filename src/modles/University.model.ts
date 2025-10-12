@@ -1,6 +1,7 @@
 import mongoose, { Schema } from "mongoose";
+import { IUniversity } from "../interfaces/IUniversity";
 
-const universitySchema = new Schema({
+const universitySchema = new Schema<IUniversity>({
     universityName: {
         type: String,
         required: true
@@ -26,4 +27,4 @@ const universitySchema = new Schema({
     timestamps: true, 
 })
 
-export const University = mongoose.model("University", universitySchema);
+export const University = mongoose.model<IUniversity>("University", universitySchema);
