@@ -1,4 +1,4 @@
-import { UserRole } from "../modles/User.model";
+import { UserRole } from "../models/User.model";
 
 export interface IUser extends Document {
     user_id: number;
