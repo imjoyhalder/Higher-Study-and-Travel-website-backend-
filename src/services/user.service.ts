@@ -9,7 +9,7 @@ export const getAllUsers = async (): Promise<IUser[]> => {
         const users = await User.find()
         return users
     } catch (error) {
-        throw new Error('Falied to detch users')
+        throw new Error('Failed to fetch users')
     }
 }
 
