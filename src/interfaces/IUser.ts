@@ -1,6 +1,7 @@
 import { UserRole } from "../models/User.model";
 
 export interface IUser extends Document {
+    isModified(arg0: string): unknown;
     user_id: number;
     name: string;
     email: string;
