@@ -2,7 +2,6 @@ import { IUser } from "../interfaces/IUser";
 import { User } from "../models/User.model";
 
 
-
 //  all User get
 export const getAllUsers = async (): Promise<IUser[]> => {
     try {

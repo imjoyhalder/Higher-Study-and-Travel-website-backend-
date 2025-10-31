@@ -1,15 +1,14 @@
-import { authMiddleware } from "../middleware/auth.middleware"
-import { roleMiddleware } from "../middleware/role.middleware"
-import { createUser, getAllUsers } from "../services/user.service"
+import express from "express";
+import { authMiddleware } from "../middleware/auth.middleware";
+import { roleMiddleware } from "../middleware/role.middleware";
+import { createUser, getAllUsers } from "../services/user.service";
 
-const express = require('express')
-
-const router =express.Router()
+const router = express.Router();
 
 
-router.get('/',authMiddleware,roleMiddleware(["admin"]),getAllUsers)
+router.get('/', authMiddleware, roleMiddleware(["admin"]), getAllUsers);
 
-router.get('/',createUser)
 
+router.post('/', createUser);
 
 export default router;

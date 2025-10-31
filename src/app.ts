@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import passport from "passport";
 import dotenv from "dotenv";
-import routes from "./routes/index"
+import routes from "./routes/index.routes"
 import { connectDB } from "./config/bd";
 
 
