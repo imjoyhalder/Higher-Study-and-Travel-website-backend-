@@ -1,8 +1,8 @@
 import express from "express";
-import { getAllUniversity } from "../services/university.service";
+import { getAllUniversities } from "../services/university.service";
 
 const router = express.Router();
 
-router.get('/', getAllUniversity);
+router.get('/', getAllUniversities);
 
 export default router;

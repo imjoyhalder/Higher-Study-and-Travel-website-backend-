@@ -4,7 +4,7 @@ import { Request, Response } from "express";
 
 export const getAllUniversity = async (req: Request, res: Response): Promise<void> => {
     try {
-        const universities = await universityService.getAllUniversity()
+        const universities = await universityService.getAllUniversities()
         res.status(200).json(universities)
     }
     catch (error: any) {
