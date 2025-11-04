@@ -45,7 +45,7 @@ export const getAllUniversity = async (req: Request, res: Response) => {
 
 //Get single Universities
 export const getSingleUniversity = async(req: Request, res: Response)=>{
-
+    const hello = 'Next'
 }
 
 
