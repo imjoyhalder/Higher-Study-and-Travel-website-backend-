@@ -6,8 +6,8 @@ import { createUser, getAllUsers } from "../services/user.service";
 const router = express.Router();
 
 
-router.get('/', authMiddleware, roleMiddleware(["admin"]), getAllUsers);
-
+// router.get('/', authMiddleware, roleMiddleware(["admin"]), getAllUsers);
+router.get('/', roleMiddleware(["admin"]), getAllUsers);
 
 router.post('/', createUser);
 

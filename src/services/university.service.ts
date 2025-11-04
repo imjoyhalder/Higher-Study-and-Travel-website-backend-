@@ -2,22 +2,29 @@ import { University } from './../models/University.model';
 import { IUniversity } from "../interfaces/IUniversity";
 
 
+//  Create a new university
 
-// get all university 
-export const getAllUniversities = async (): Promise<IUniversity[]> => {
+// export const createUniversity = async(data: IUniversity): Promise<IUniversity[]> =>{
+//     const newUniversity = await University(data)
+//     newUniversity.save()
+// }
+
+export const createUniversity = async (data: IUniversity): Promise<IUniversity> => {
     try {
-        const universities  =  await University.find({});
-        console.log(universities);
-        return universities
+        const newUniversity = new University(data); 
+        return await newUniversity.save(); 
     } catch (error) {
-        throw new Error("Failed to fetch universities");
+        throw new Error("Failed to create university");
     }
 };
 
-// export const getAllUniversity = async (): Promise<String> => {
-//     try {
-//         return 'Hit api successfully'
-//     } catch (error) {
-//         throw new Error('Failed to fetch universities')
-//     }
-// }
+
+// Fetch all universities
+export const getAllUniversities = async (): Promise<IUniversity[]> => {
+    try {
+        const universities = await University.find({});
+        return universities;
+    } catch (error) {
+        throw new Error("Failed to fetch universities"); // Catches DB errors
+    }
+};

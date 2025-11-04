@@ -5,7 +5,11 @@ import universityRoutes from './university.routes'
 const router = Router()
 
 router.use('/users', userRoutes)
-router.use('/universities', universityRoutes)
 router.use('/createUser',userRoutes)
+
+
+// University routes
+router.use('/universities', universityRoutes)
+
 
 export default router;

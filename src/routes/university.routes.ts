@@ -1,8 +1,10 @@
 import express from "express";
-import { getAllUniversities } from "../services/university.service";
+import { createNewUniversity, getAllUniversity } from "../controllers/university.contoller";
 
 const router = express.Router();
 
-router.get('/', getAllUniversities);
+// Use the controller (it handles req/res)
+router.get("/", getAllUniversity);
+router.post("/", createNewUniversity)
 
 export default router;
