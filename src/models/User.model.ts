@@ -16,7 +16,7 @@ export enum DocumentType {
 
 const userSchema = new Schema<IUser>(
     {
-        name: {
+        fullName: {
             type: String,
             required: true,
             trim: true,
@@ -43,7 +43,7 @@ const userSchema = new Schema<IUser>(
         phone: {
             type: String,
         },
-        date_of_birth: {
+        dateOfBirth: {
             type: Date,
         },
         nationality: {
