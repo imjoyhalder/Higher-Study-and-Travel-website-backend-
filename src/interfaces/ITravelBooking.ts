@@ -1,15 +1,6 @@
 import { Types } from "mongoose";
+import { BookingStatusType, PaymentType } from "../models/TravelBooking.model";
 
-export enum PaymentType{
-    'paid', 
-    'unpaid'
-}
-
-export enum BookingStatusType{
-    'pending', 
-    'confirmed', 
-    'cancelled'
-}
 
 
 export interface ITravelBooking extends Document{

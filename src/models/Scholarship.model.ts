@@ -1,5 +1,6 @@
-import mongoose, { Schema, Document } from "mongoose";
+import mongoose, { Schema } from "mongoose";
 import { IScholarship } from "../interfaces/IScholarship";
+import { scholarshipTypes } from "../interfaces/IScholarship";
 
 const scholarshipSchema = new Schema<IScholarship>(
   {
@@ -8,35 +9,88 @@ const scholarshipSchema = new Schema<IScholarship>(
       required: true,
       trim: true,
     },
-    university_id: {
+
+    county: {
+      type: String,
+      required: true,
+    },
+
+    slug: {
+      type: String,
+      required: true,
+      unique: true,
+      lowercase: true,
+      trim: true,
+    },
+
+    universityId: {
       type: Schema.Types.ObjectId,
       ref: "University",
       required: true,
     },
-    eligibility: {
+
+    type: {
       type: String,
+      enum: [scholarshipTypes.FULL, scholarshipTypes.PARTIAL, scholarshipTypes.MERIT],
       required: true,
-      trim: true,
     },
-    benefits: {
-      type: String,
-      required: true,
-      trim: true,
-    },
+
     deadline: {
       type: Date,
       required: true,
     },
-    created_by_id: {
+
+    amount: {
+      type: Number,
+      default: 0,
+    },
+
+    applicationFee: {
+      type: Number,
+      default: 0,
+    },
+
+    eligibility: {
+      type: [String],
+      default: [],
+    },
+
+    requirements: {
+      type: [String],
+      required: true,
+    },
+
+    description: {
+      type: String,
+      required: true,
+    },
+
+    applyLink: {
+      type: String,
+      default: null,
+    },
+
+    benefits: {
+      type: String,
+      default: null,
+    },
+
+    createdById: {
       type: Schema.Types.ObjectId,
       ref: "User",
       required: true,
     },
+
+    status: {
+      type: Boolean,
+      default: true, // open
+    },
   },
+
   {
     timestamps: {
       createdAt: "created_at",
-      updatedAt: false,
+      updatedAt: "updated_at",
     },
   }
 );

@@ -1,13 +1,8 @@
 import { Types } from "mongoose";
+import { statusType } from "../models/ScholarshipApplications.model";
 
-enum statusType{
-    'pending', 
-    'reviewed', 
-    'approved', 
-    'rejected'
-}
 
-export interface IScholarship extends Document{
+export interface IScholarshipApplications extends Document{
     studentId: Types.ObjectId; 
     scholarshipId: Types.ObjectId; 
     universityId: Types.ObjectId; 

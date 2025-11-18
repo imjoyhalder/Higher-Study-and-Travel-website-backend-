@@ -1,10 +1,11 @@
 import { Date, Types } from "mongoose";
 
-enum scholarshipTypes{
-  'full', 
-  'partial', 
-  'merit',
+export enum scholarshipTypes {
+  FULL = "full",
+  PARTIAL = "partial",
+  MERIT = "merit",
 }
+
 
 export interface IScholarship extends Document {
   title: string;
@@ -15,10 +16,12 @@ export interface IScholarship extends Document {
   deadline: Date
   amount?: number, 
   applicationFee?: number,
-  eligibility: string[]; 
+  eligibility?: string[]; 
   requirements: string[]; 
   description: string; 
   applyLink?: string; 
+  benefits?: string; 
+  createdById?: Types.ObjectId
   status: boolean // open or closed
   created_at?: Date;
   updated_at?: Date;
