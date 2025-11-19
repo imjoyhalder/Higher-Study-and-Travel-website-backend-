@@ -1,5 +1,8 @@
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
+// import bcrypt from "bcrypt";
+// import jwt from "jsonwebtoken"; 
+const jwt = require('jsonwebtoken')
+const bcrypt  = require('bcrypt')
+
 import { User } from "../models/User.model";
 import { IUser } from "../interfaces/IUser";
 
@@ -29,7 +32,7 @@ export const registerUser = async (userData: Partial<IUser>) => {
 
     // remove password before returning
     const obj = newUser.toObject();
-    delete obj.password;
+    // delete obj.password;
     return obj;
 };
 
@@ -47,7 +50,7 @@ export const loginUser = async (email: string, password: string) => {
     const token = jwt.sign(payload, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN });
 
     const userObj = user.toObject();
-    delete userObj.password;
+    // delete userObj.password;
 
     return { token, user: userObj };
 };

@@ -1,5 +1,5 @@
+import { IUniversity } from './../interfaces/IUniversity';
 import { University } from './../models/University.model';
-import { IUniversity } from "../interfaces/IUniversity";
 
 
 //  Create a new university
@@ -24,6 +24,7 @@ export const getAllUniversities = async (): Promise<IUniversity[]> => {
 };
 
 
+
 //Delete single university
 export const deleteSingleUniversity = async (id: string) => {
     try {
@@ -36,3 +37,17 @@ export const deleteSingleUniversity = async (id: string) => {
         throw new Error(error.message || "Failed to delete university");
     }
 };
+
+
+//get single university 
+export const getSingleUniversity = async (id: string)=>{
+    try{
+        const university = await University.findById(id)
+        if(university){
+            return university
+        }
+    }
+    catch(error: any){
+        throw new Error(error.message || 'University not found')
+    }
+}

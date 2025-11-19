@@ -19,7 +19,7 @@ export const createUserByAdmin = async (userData: Partial<IUser>): Promise<IUser
   const newUser = new User(userData);
   await newUser.save();
   const obj = newUser.toObject();
-  delete obj.password;
+  // delete obj.password;
   return obj;
 };
 

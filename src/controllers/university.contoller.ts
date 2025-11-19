@@ -7,12 +7,12 @@ import { IUniversity } from '../interfaces/IUniversity';
 // Create a new university
 export const createNewUniversity = async (req: Request, res: Response) => {
     try {
-        const data: IUniversity = req.body;  
+        const data: IUniversity = req.body;
 
         // Optional: validate required fields
-        if (!data.universityName || !data.country || !data.description || !data.requirements || !data.created_by_id) {
-            return res.status(400).json({ message: "Please provide all required fields" });
-        }
+        // if (!data.universityName || !data.country || !data.description) {
+        //     return res.status(400).json({ message: "Please provide all required fields" });
+        // }
 
         const newUniversity = await universityService.createUniversity(data);  // Service call
         res.status(201).json({ message: "University created successfully", university: newUniversity });
@@ -23,13 +23,13 @@ export const createNewUniversity = async (req: Request, res: Response) => {
 };
 
 // delete single university
-export const deleteSingleUniversity = async(req: Request, res: Response)=>{
+export const deleteSingleUniversity = async (req: Request, res: Response) => {
     try {
-        const {id} = req.params
+        const { id } = req.params
         const deletedUniversity = await universityService.deleteSingleUniversity(id)
         res.status(200).json({ message: "University deleted successfully", university: deletedUniversity });
     } catch (error: any) {
-        res.status(500).json({ message: error.message|| "Failed to fetch universities" });
+        res.status(500).json({ message: error.message || "Failed to fetch universities" });
     }
 }
 
@@ -44,8 +44,14 @@ export const getAllUniversity = async (req: Request, res: Response) => {
 };
 
 //Get single Universities
-export const getSingleUniversity = async(req: Request, res: Response)=>{
-    const hello = 'Next'
+export const getSingleUniversity = async (req: Request, res: Response) => {
+    try {
+        const { id } = req.params
+        const singleUniversity = await universityService.getSingleUniversity(id)
+        res.status(200).json(singleUniversity)
+    } catch (error) {
+        
+    }
 }
 
 
