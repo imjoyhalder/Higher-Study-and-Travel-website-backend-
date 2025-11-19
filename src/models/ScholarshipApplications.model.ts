@@ -13,7 +13,7 @@ const ScholarshipApplicationSchema = new Schema<IScholarshipApplications>(
     {
         studentId: {
             type: Schema.Types.ObjectId,
-            ref: "Student",
+            ref: "User", // here was Student model reference 
             required: true,
         },
 
