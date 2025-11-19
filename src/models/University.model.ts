@@ -27,7 +27,7 @@ const universitySchema = new Schema<IUniversity>(
 
         ranking: {
             type: Number,
-            required: true,
+            // required: true,
         },
 
         universityLogo: {
@@ -63,7 +63,6 @@ const universitySchema = new Schema<IUniversity>(
 
         acceptanceRate: {
             type: Number,
-            required: true,
         },
 
         programs: {

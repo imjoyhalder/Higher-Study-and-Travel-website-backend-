@@ -13,7 +13,9 @@ export const getAllUsers = async (req: Request, res: Response): Promise<void> =>
 export const getUser = async (req: Request, res: Response): Promise<void> => {
   try {
     const user = await userService.getUserById(req.params.id);
-    if (!user) return res.status(404).json({ success: false, message: "User not found" });
+    if (!user) {
+      res.status(404).json({ success: false, message: "User not found" });
+    }
     res.json({ success: true, user });
   } catch (error: any) {
     res.status(500).json({ success: false, message: error.message });
