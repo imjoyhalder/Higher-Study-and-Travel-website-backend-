@@ -51,3 +51,23 @@ export const getSingleUniversity = async (id: string)=>{
         throw new Error(error.message || 'University not found')
     }
 }
+
+// update single university 
+export const updateSingleUniversity = async (id: string, data: any) => {
+    try {
+        const updatedUniversity = await University.findByIdAndUpdate(
+            id,       
+            data,     
+            { new: true, runValidators: true }  // updated doc return
+        );
+
+        if (!updatedUniversity) {
+            throw new Error("University not found");
+        }
+
+        return updatedUniversity;
+
+    } catch (error: any) {
+        throw new Error(error.message || "Failed to update university");
+    }
+};

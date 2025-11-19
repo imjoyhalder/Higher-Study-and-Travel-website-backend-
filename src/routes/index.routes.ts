@@ -7,6 +7,6 @@ const router = Router();
 
 router.use("/auth", authRoutes);          // /api/auth/register, /api/auth/login
 router.use("/users", userRoutes);         // protected admin routes: /api/users
-router.use("/universities", universityRoutes); // api/universities
+router.use("/universities", universityRoutes); // /api/universities
 
 export default router;

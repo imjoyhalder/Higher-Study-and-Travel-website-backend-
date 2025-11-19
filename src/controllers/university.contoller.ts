@@ -1,3 +1,4 @@
+import { updateSingleUniversity } from './../services/university.service';
 import { University } from './../models/University.model';
 import * as universityService from '../services/university.service';
 import { Request, Response } from "express";
@@ -50,7 +51,22 @@ export const getSingleUniversity = async (req: Request, res: Response) => {
         const singleUniversity = await universityService.getSingleUniversity(id)
         res.status(200).json(singleUniversity)
     } catch (error) {
-        
+
+    }
+}
+
+//Update University
+export const updateUniversity = async (req: Request, res: Response) => {
+    try {
+        const { id } = req.params
+        const updatedUniversity = await updateSingleUniversity(id, req.body)
+
+        res.status(200).json({
+            message: 'University updated successfully',
+            university: updatedUniversity
+        })
+    } catch (error: any) {
+        res.status(500).json({ message: error.message || "Update failed" });
     }
 }
 
