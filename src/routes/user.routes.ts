@@ -1,14 +1,17 @@
-import express from "express";
+import { Router } from "express";
+import * as userController from "../controllers/user.controller";
 import { authMiddleware } from "../middleware/auth.middleware";
 import { roleMiddleware } from "../middleware/role.middleware";
-import { createUser, getAllUsers } from "../services/user.service";
 
-const router = express.Router();
+const router = Router();
 
+// All routes below require admin role
+router.use(authMiddleware, roleMiddleware(["admin"]));
 
-// router.get('/', authMiddleware, roleMiddleware(["admin"]), getAllUsers);
-router.get('/', roleMiddleware(["admin"]), getAllUsers);
-
-router.post('/', createUser);
+router.get("/", userController.getAllUsers);
+router.post("/", userController.createUser);         // create user by admin
+router.get("/:id", userController.getUser);
+router.put("/:id", userController.updateUser);
+router.delete("/:id", userController.deleteUser);
 
 export default router;

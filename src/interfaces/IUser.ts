@@ -5,7 +5,7 @@ export interface IUser extends Document {
     fullName: string;
     email: string;
     password: string;
-    role: UserRole;
+    role?: UserRole;
     profile_image?: string;
     phone?: string;
     dateOfBirth?: Date;
@@ -19,7 +19,7 @@ export interface IUser extends Document {
     booking?: Types.ObjectId[]
     savedUniversity?: Types.ObjectId[]
     savedScholarships?: Types.ObjectId[]; 
-    savedPackages: Types.ObjectId[]; 
+    savedPackages?: Types.ObjectId[]; 
     country?: string
     avatar?: string
     created_at?: Date;
