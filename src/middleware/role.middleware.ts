@@ -1,15 +1,19 @@
-
 import { Request, Response, NextFunction } from "express";
 
-export const roleMiddleware = (allowedRoles: string[]) => {
-  return (req: Request, res: Response, next: NextFunction) => {
-    // @ts-ignore
-    const user = req.user;
-    if (!user) return res.status(401).json({ message: "Unauthorized" });
+export const roleMiddleware = (roles: string[]) => {
+    return (req: any, res: Response, next: NextFunction) => {
+        try {
+            const userRole = req.user?.role;
 
-    if (!allowedRoles.includes(user.role)) {
-      return res.status(403).json({ message: "Forbidden. Insufficient permissions" });
-    }
-    next();
-  };
+            if (!roles.includes(userRole)) {
+                return res.status(403).json({ 
+                    message: "Access denied! You are not authorized." 
+                });
+            }
+
+            next();
+        } catch (error) {
+            res.status(500).json({ message: "Authorization failed" });
+        }
+    };
 };
