@@ -10,7 +10,7 @@ router.use(authMiddleware, roleMiddleware(["admin"]));
 
 router.get("/", userController.getAllUsers);
 router.post("/", userController.createUser);         // create user by admin
-router.get("/:id", userController.getUser);
+router.get("/:id", userController.getUser); // get single user
 router.put("/:id", userController.updateUser);
 router.delete("/:id", userController.deleteUser);
 

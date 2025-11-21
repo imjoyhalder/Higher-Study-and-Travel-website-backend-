@@ -102,6 +102,7 @@ TravelPackageSchema.pre("save", function (next) {
     next();
 });
 
+
 export const TravelPackage = model<ITravelPackage>(
     "TravelPackage",
     TravelPackageSchema
