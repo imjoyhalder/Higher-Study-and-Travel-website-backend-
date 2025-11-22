@@ -12,7 +12,7 @@ export const createTravelPackage = async (data: ITravelPackage) => {
     }
 };
 
-// Get Single Travel Package
+// get single Travel package
 export const getSingleTravelPackage = async (id: string) => {
     try {
         if (!isValidObjectId(id)) throw new Error("Invalid travel package ID");

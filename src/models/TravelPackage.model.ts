@@ -88,6 +88,7 @@ const TravelPackageSchema = new Schema<ITravelPackage>(
             type: [String],
             default: [],
         },
+    
     },
     {
         timestamps: true,

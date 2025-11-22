@@ -24,7 +24,6 @@ export const getAllUniversities = async (): Promise<IUniversity[]> => {
 };
 
 
-
 //Delete single university
 export const deleteSingleUniversity = async (id: string) => {
     try {
