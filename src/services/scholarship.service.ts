@@ -7,7 +7,7 @@ export const createScholarship = async (
 ): Promise<IScholarship> => {
     try {
         const newScholarship = await Scholarship.create(data);
-        return newScholarship; // ❌ no need to .save() again
+        return newScholarship; 
     } catch (error) {
         throw new Error("Failed to create scholarship");
     }

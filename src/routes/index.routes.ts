@@ -1,16 +1,19 @@
 import { Router } from "express";
 import userRoutes from "./user.routes";
 import universityRoutes from "./university.routes";
-import scholarshipRoutes from "./scholarship.routes"
 import authRoutes from "./auth.routes";
-import travePackageRoutes from './travelPackage.routes'
+
+import { travePackageRoutes } from "./travelPackage.routes";
+import { scholarshipRoutes } from "./scholarship.routes";
+import { scholarshipApplication } from "./scholarshipApplication.routes";
 
 const router = Router();
 
-router.use("/auth", authRoutes);          //   /api/auth/register, /api/auth/login
-router.use("/users", userRoutes);         // protected admin routes: /api/users
-router.use("/universities", universityRoutes); //     /api/universities
-router.use("/scholarships", scholarshipRoutes) //     /api/scholarships
-router.use("/travelPackage", travePackageRoutes) //   /api/travelPackage
+router.use("/auth", authRoutes);         
+router.use("/users", userRoutes);        
+router.use("/universities", universityRoutes); 
+router.use("/scholarships", scholarshipRoutes) 
+router.use("/travelPackage", travePackageRoutes) 
+router.use("/scholarship-application",scholarshipApplication ) 
 
 export default router;

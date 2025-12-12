@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import * as travelPackageService from "../services/TravelPackage.service";
+import * as travelPackageService from "../services/travelPackage.service";
 
 
 // ===============================

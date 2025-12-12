@@ -1,27 +1,58 @@
-import { Request, Response, NextFunction } from "express";
-const jwt = require('jsonwebtoken')
-import { User } from "../models/User.model";
+// auth.middleware.ts
+import { Request, Response, NextFunction } from 'express';
+import jwt from 'jsonwebtoken';
+import { isTokenBlacklisted, logoutUser } from '../services/auth.service';
+
 
 const JWT_SECRET = process.env.JWT_SECRET || "secret";
 
-export const authMiddleware = async (req: Request, res: Response, next: NextFunction) => {
-  try {
-    const authHeader = req.headers.authorization;
-    if (!authHeader || !authHeader.startsWith("Bearer ")) {
-      return res.status(401).json({ message: "No token provided" });
+export interface AuthRequest extends Request {
+    user?: any;
+}
+
+export const authMiddleware = async (req: AuthRequest, res: Response, next: NextFunction) => {
+    const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.split(' ')[1]; // Bearer TOKEN
+
+    if (!token) {
+        return res.status(401).json({ message: 'Access token required' });
     }
 
-    const token = authHeader.split(" ")[1];
-    const decoded: any = jwt.verify(token, JWT_SECRET);
+    // Check if token is blacklisted (user logged out)
+    if (isTokenBlacklisted(token)) {
+        return res.status(401).json({ message: 'Token has been invalidated. Please login again.' });
+    }
 
-    // attach full user object (without password) to req
-    const user = await User.findById(decoded.id).select("-password");
-    if (!user) return res.status(401).json({ message: "Invalid token" });
+    try {
+        const decoded = jwt.verify(token, JWT_SECRET) as any;
+        req.user = decoded;
+        next();
+    } catch (error) {
+        return res.status(403).json({ message: 'Invalid or expired token' });
+    }
+};
 
-    // @ts-ignore - attach user
-    req.user = user;
-    next();
-  } catch (error: any) {
-    return res.status(401).json({ message: "Unauthorized", error: error.message });
-  }
+export const logoutMiddleware = async (req: AuthRequest, res: Response) => {
+    try {
+        const authHeader = req.headers['authorization'];
+        const token = authHeader && authHeader.split(' ')[1];
+
+        if (!token) {
+            return res.status(400).json({ message: 'No token provided' });
+        }
+
+        const success = logoutUser(token);
+        
+        if (success) {
+            return res.json({ 
+                message: 'Logged out successfully',
+                logoutTime: new Date().toISOString()
+            });
+        } else {
+            return res.status(500).json({ message: 'Failed to logout' });
+        }
+    } catch (error) {
+        console.error('Logout error:', error);
+        return res.status(500).json({ message: 'Internal server error during logout' });
+    }
 };

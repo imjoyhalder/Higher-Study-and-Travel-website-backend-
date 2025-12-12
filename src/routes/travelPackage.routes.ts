@@ -1,7 +1,7 @@
 import express  from "express";
 import { createNewTravelPackage, deleteSinglePackage, getAllTravelPackages, getSingleTravelPackage, updateSingleTravelPackage } from "../controllers/travelpackage.controller";
-import { authMiddleware } from "../middleware/auth.middleware";
 import { roleMiddleware } from "../middleware/role.middleware";
+import { authMiddleware } from "../middleware/auth.middleware";
 
 const router = express.Router()
 
@@ -14,4 +14,4 @@ router.post('/',authMiddleware,roleMiddleware(['admin']), createNewTravelPackage
 router.delete('/:id',authMiddleware, roleMiddleware(['admin']), deleteSinglePackage)
 router.put('/:id', authMiddleware, roleMiddleware(["admin"]),updateSingleTravelPackage)
 
-export default router; 
+export const travePackageRoutes =  router; 

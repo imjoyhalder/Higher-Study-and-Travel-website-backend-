@@ -16,4 +16,4 @@ router.post("/", authMiddleware, roleMiddleware(['admin']), createNewScholarship
 router.put("/:id", authMiddleware, roleMiddleware(['admin']), updateSingleScholarship)
 router.delete("/:id", authMiddleware, roleMiddleware(['admin']), deleteSingleScholarship)
 
-export default router;
+export const scholarshipRoutes =  router;

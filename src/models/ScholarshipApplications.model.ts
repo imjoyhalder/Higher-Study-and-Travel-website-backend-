@@ -100,3 +100,27 @@ export const ScholarshipApplication = model<IScholarshipApplications>(
     "ScholarshipApplication",
     ScholarshipApplicationSchema
 );
+
+
+
+// {
+//   "studentId": "676abc123def456789012345",
+//   "scholarshipId": "691e4078a3222f0ac7861cf2",
+//   "universityId": "691e249604892a92f6e71f92",
+
+//   "fullName": "John Michael Carter",
+//   "email": "johncarter@example.com",
+//   "phone": "+8801789123456",
+//   "country": "Bangladesh",
+
+//   "documents": [
+//     "https://example.com/docs/passport.pdf",
+//     "https://example.com/docs/transcript.pdf"
+//   ],
+
+//   "status": "pending",
+//   "notes": "Student applied for full scholarship consideration.",
+//   "reviewedBy": '69224026e1cf13498c0f953d',
+//   "paymentStatus": "unpaid"
+// }
+// 
