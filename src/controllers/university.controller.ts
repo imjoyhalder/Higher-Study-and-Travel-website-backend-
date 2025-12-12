@@ -23,7 +23,8 @@ export const createNewUniversity = async (req: Request, res: Response) => {
     }
 };
 
-// delete single university
+
+
 export const deleteSingleUniversity = async (req: Request, res: Response) => {
     try {
         const { id } = req.params
