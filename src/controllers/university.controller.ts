@@ -10,10 +10,7 @@ export const createNewUniversity = async (req: Request, res: Response) => {
     try {
         const data: IUniversity = req.body;
 
-        // Optional: validate required fields
-        // if (!data.universityName || !data.country || !data.description) {
-        //     return res.status(400).json({ message: "Please provide all required fields" });
-        // }
+        
 
         const newUniversity = await universityService.createUniversity(data);  // Service call
         res.status(201).json({ message: "University created successfully", university: newUniversity });
