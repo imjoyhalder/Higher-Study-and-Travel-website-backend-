@@ -46,5 +46,6 @@ export const deleteUser = async (req: Request, res: Response): Promise<void> => 
     res.json({ success: true, message: "User deleted" });
   } catch (error: any) {
     res.status(400).json({ success: false, message: error.message });
+    // this is me
   }
 };
